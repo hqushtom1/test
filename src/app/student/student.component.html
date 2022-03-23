@@ -1,0 +1,46 @@
+<div class="container">
+  <h1>Student Form</h1>
+
+  <form #heroForm="ngForm">
+    {{diagnostic()}}
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" id="name" required [(ngModel)]="model.name" name="name" #name_std="ngModel" >
+     <div *ngIf="name_std.invalid">
+       <div class="alert"> Error </div>
+     </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" id="email" [(ngModel)]="model.email" name="email">
+    </div>
+
+    <div ngModelGroup="address">
+      <div class="form-group">
+        <label for="power">City</label>
+        <select id="city" required [(ngModel)]="model.city" name="city">
+          <option *ngFor="let c of citys" [value]="c">{{c}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>street</label>
+        <input type="text" id="name" required ngModel name="street">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+  ddd {{heroForm.value|json}} {{name_std.errors|json}}
+</div>
+
+
+<hr>
+<input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name">
+TODO: remove this: {{model.name}}
+<hr>
+<input type="text" class="form-control" id="name" required [ngModel]="model.name" name="name"
+  (ngModelChange)="model.name = $event">
+TODO: remove this: {{model.name}}
